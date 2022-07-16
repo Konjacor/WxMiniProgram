@@ -1,0 +1,54 @@
+<view class="searchContainer">
+  <!-- 头部搜索区域 -->
+  <view class="header">
+    <view class="searchInput">
+      <text class="iconfont icon-search1 searchIcon"></text>
+      <input type="text" value="{{searchContent}}" placeholder="{{placeholderContent}}" placeholder-class="placeholder" bindinput="handleInputChange"/><!--
+      placeholder是输入框内容为空时，显示在上面的默认提示信息。
+      小程序支持placeholder-class可以方便的修改placeholder的样式。
+      change事件是input里面的内容改变并且失去焦点后才会调用，而input事件是随着input里面的内容改变而实时调用,最后input标签中的值是input事件的返回值，异步时注意处理。
+      input中输入的内容会存在event.detail.value中。
+      value属性是用来指定输入框中的值，显式声明出来是为了后面的清空输入框内容。-->
+      <text class="clear" bindtap="clearSearchContent" hidden="{{!searchContent}}">X</text><!--hidden为true时隐藏内容，为false时显示内容，作用相当于v-show。适用于需要频繁切换显示或隐藏状态的情况，性能会比if好很多。-->
+    </view>
+    <text class="cancel">取消</text>
+  </view>
+
+  <block wx:if='{{searchList.length}}'><!--块，用于嵌入多个元素，将多个元素当成一个整体，但在页面结构中并不加载这个标签，这里用来进行条件判断，让满足条件时，只显示这个block块中的内容。-->
+   <!-- 搜索内容展示 -->
+   <view class="showSearchContent">
+     <view class="searchContent">搜索内容: {{searchContent}}</view>
+     <view class="searchList">
+       <view class="searchItem" wx:for="{{searchList}}" wx:key="id">
+         <text class="iconfont icon-search1"></text>
+         <text class="content">{{item.name}}</text>
+       </view>
+     </view>
+   </view>
+  </block>
+
+
+  <block wx:else>
+    <!-- 搜索历史记录 -->
+    <view class="history" wx:if="{{historyList.length}}"><!--加个if，有历史记录的时候才显示历史记录区域，没有数据就干脆不显示。-->
+      <view class="title">历史</view>
+      <view class="historyItem" wx:for="{{historyList}}" wx:key="{{item}}">
+        {{item}}
+      </view>
+      <!-- 删除 -->
+      <text class="iconfont icon-shanchu delete" bindtap="deleteSearchHistory"></text>
+    </view>
+    <!-- 热搜榜 -->
+    <view class="hotContainer">
+      <view class="title">热搜榜</view>
+      <!-- 热搜列表 -->
+      <view class="hotList">
+        <view class="hotItem" wx:for="{{hotList}}" wx:key="searchWord">
+          <text class="order">{{index + 1}}</text>
+          <text>{{item.searchWord}}</text>
+          <image class="iconImg" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}"></image>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

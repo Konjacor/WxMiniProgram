@@ -1,0 +1,119 @@
+/* pages/video/video.wxss */
+/*书写视频头部的样式，主要实现了两边固定中间自适应的样式*/
+.videoContainer .header{
+  display: flex;/*使里面的元素使用弹性布局，体现在纵向排列变横向排列了*/
+  padding: 10rpx;/*让上下左右都有10rpx的间距*/
+}
+.videoContainer .header image{/*设置两边图片的大小*/
+  height: 60rpx;
+  width: 60rpx;
+
+}
+.videoContainer .header .search{/*设置中间搜索框的属性*/
+  border: 1rpx solid #eee;/*加个对应属性的外边框*/
+  /*
+  flex-grow: 可拉伸 flex-shrink: 可压缩 flex-basis: 当前元素的宽度
+  flex的默认值的设置：flex-grow: 0 flex-shrink: 1 flex-basis: auto（首先根据自身内容自适应宽度）
+  flex的值为1的设置：flex-grow: 1 flex-shrink: 1 flex-basis: 0%（不以其中的内容决定宽度，而是由伸缩盒的剩余空间决定，也就是说组件会尽可能在伸缩盒中进行拉伸）
+  flex的值为auto的设置：flex-grow: 1 flex-shrink: 1 flex-basis: auto
+  flex的值为1会导致父元素的宽度自动为100%，上面设置了两边图片的大小，父元素剩下的空间就都会分配给这个元素了。
+  */
+  flex: 1;/*设置该元素在父元素空间下尽可能拉伸*/
+  margin: 0 20rpx;/*设置左右边距为20rpx*/
+  font-size: 26rpx;/*设置字体大小*/
+  text-align: center;/*设置文字居中*/
+  line-height: 60rpx;/*设置行高*/
+  color: #d43c33;/*设置文字颜色*/
+}
+/*导航区域*/
+.navScroll{
+  display: flex;/*横向排列*/
+  white-space: nowrap;/*不允许向下换行(文本全横向排列)*/
+  height: 60rpx;
+}
+.navScroll .navItem{
+  padding: 0 30rpx;/*左右空30rpx*/
+  font-size: 28rpx;/*字体大小*/
+  height: 60rpx;/*该类元素的高度*/
+  line-height: 60rpx;/*元素中内容的行高*/
+  /* box-sizing: border-box;如果该元素有边框的话，则计算大小时也把边框算进去 */
+}
+.navScroll .navContent{
+  height: 60rpx;
+  box-sizing: border-box;/*如果该元素有边框的话，则计算大小*/
+}
+.navContent.active{/*注意这种是并集选择器，也就是说只有同时有这两个标签的元素才会被选择到，特别注意中间没空格*/
+  border-bottom: 1rpx solid #d43c33;/*被选中的元素的下划线*/
+}
+/*视频列表区域*/
+.videoScroll{
+  margin-top: 10rpx;
+  /*防止导航栏也跟着往下滑动，要注意底下的tabbar不在高度内
+  calc:可以动态计算css的宽高
+  视口单位：vh vw 1vh = 1%的视口高度 1vw = 1%的视口宽度
+  运算符的左右两边必须加空格
+  */
+  height: calc(100vh - 152rpx);/*100%的视口高度减去总头部的高度*/
+}
+.videoItem{
+  padding: 0 3%;
+}
+.videoItem .common{
+  height: 360rpx;
+  width: 100%;
+  border-radius: 10rpx;
+}
+
+.videoItem .content {
+  font-size: 26rpx;
+  height:80rpx;
+  line-height: 80rpx;
+  max-width: 500rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* footer */
+.footer {
+  border-top: 1rpx solid #eee;
+  padding: 20rpx 0;
+}
+.footer .avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.footer  .nickName {
+  font-size: 26rpx;
+  vertical-align: middle;
+  margin-left: 20rpx;
+}
+
+.footer .comments_praised {
+  float: right;
+}
+
+.comments_praised .btn {
+  display: inline;
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.comments_praised .btn:after {
+  border: none;
+}
+
+.comments_praised .item {
+  margin-left: 50rpx;
+  position: relative;
+}
+
+.comments_praised .item .count {
+  position: absolute;
+  top: -20rpx;
+  font-size: 20rpx;
+}

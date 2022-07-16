@@ -1,0 +1,27 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="wrapper">
+    <view class="left-top-sign">LOGIN</view>
+    <view class="welcome">
+      欢迎回来！
+    </view>
+    <view class="input-content">
+      <view class="input-item">
+        <text class="tit">手机号码</text>
+        <input  type="text" placeholder="请输入手机号码" data-test="abc" data-type="phone" id="phone" bindinput="handleInput"/><!--这里面的id相当于给event事件对象进行了传参，之后可以通过判断event事件里面的id来判断调用者是谁。同时也可以自定义属性放到event事件对象中，要用data-属性名="参数"的方法来给event事件对象传参，可以传多个参数，自定义传入的参数会出现在event的currentTarget的dataset中-->
+      </view>
+      <view class="input-item">
+        <text class="tit">密码</text>
+        <input type="password"  placeholder="请输入密码" data-test="abc" data-type="password" id="password" bindinput="handleInput"/>
+      </view>
+    </view>
+    <button class="confirm-btn" bindtap="login">登录</button>
+    <view class="forget-section">
+      忘记密码?
+    </view>
+  </view>
+  <view class="register-section">
+    还没有账号?
+    <text >马上注册</text>
+  </view>
+</view>

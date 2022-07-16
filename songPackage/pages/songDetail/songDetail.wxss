@@ -1,0 +1,150 @@
+@import '../../static/iconfont/iconfont.wxss';/*采用非独立分包时，分包但不分家，全局的样式和变量等还是可以共享的，但是如果采用了独立分包，就代表分家了，无法共享全局的样式和变量等，需要重新引入在当前子包根目录下的资源。同时注意css语句后面要跟分号。*/
+page{
+  height: 100%;
+}
+.songDetailContainer{
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);/*设置背景颜色，在黑色的基础上设置了0.5的不透明度*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;/*设置侧轴（x轴）的对齐方式*/
+}
+/*底座*/
+.circle{
+  position: relative;
+  z-index: 100;/*设置显示层级，以覆盖别的元素显示，越大了越靠上,默认是0？*/
+
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: #fff;
+  margin: 10rpx 0;
+}
+/*摇杆*/
+.needle{
+  /*设置相对定位并右移60rpx使得图片的底座显示在中间,上移40rpx以和白色圆形底座重合*/
+  position: relative;
+  z-index: 99;
+
+  left: 60rpx;
+  top: -40rpx;
+
+  width: 192rpx;
+  height: 274rpx;
+  border: 1rpx solid red;
+  transform-origin: 40rpx 0;/*设置旋转轴，第一个参数是水平方向迁移，第二个参数是竖直方向迁移*/
+  transform: rotate(-20deg);/*逆时针旋转20度,默认旋转轴是元素的左上角的点*/
+  transition: transform 1s;/*设置transform的过渡时间为1s*/
+}
+.needleRotate{/*后面的样式会覆盖前面的样式*/
+  transform: rotate(0deg);/*不旋转,默认旋转轴是元素的左上角的点*/
+}
+/*磁盘区域*/
+.discContainer{
+  /*设置相对定位并往上走一点*/
+  position: relative;
+  top: -170rpx;
+
+  height: 598rpx;
+  width: 598rpx;
+  /* border: 1rpx solid red; */
+}
+
+/*设置磁盘动画*/
+.discAnimation{
+  animation: disc 4s linear infinite;/*动画名字叫disc，过渡时间为4s，是平滑过渡,无限循环动画*/
+  animation-delay: 1s;/*为了让上面的摇杆摇下来后再转动，需要设置延迟播放动画，延迟时间为摇杆摇下来的时间。*/
+}
+@keyframes disc{/*用来设置动画帧 1、from to 从起始帧到结束帧，通常适用于比较简单的动画，只有两帧。2、百分比 多用于复杂的动画，不止两帧，0%-100%可以任意拆分。*/
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.disc{
+  height: 100%;
+  width: 100%;
+}
+
+.musicImg{
+  /*基于父元素进行定位（父元素position要设置位relative）,使得该元素在父元素中水平垂直居中*/
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  width: 370rpx;
+  height: 370rpx;
+  border-radius: 50%;
+}
+
+/*进度条控制区域*/
+.progressControl{
+  /*绝对定位*/
+  position: absolute;
+  bottom: 200rpx;
+
+  width: 640rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;/*默认水平flex排列*/
+}
+.barControl{
+  position: relative;
+  width: 450rpx;
+  height: 4rpx;
+  background: rgba(0, 0, 0, 0.4);
+  margin: auto;/*平分上下左右边距，会显示在正中间*/
+}
+.audio-currentTime-Bar{
+  /*用绝对定位以将实时进度条覆盖到总进度条上面*/
+  position: absolute;/*原理是寻找最近的开启定位的父级元素作为参照*/
+  top: 0;
+  left: 0;
+
+  width: 100rpx;
+  height: 4rpx;
+  background: red;
+}
+.audio-circle{
+  /*让小圆球的中心在实时进度条的最右端*/
+  position: absolute;
+  right: -6rpx;
+  top: -4rpx;
+
+  border-radius: 50%;
+  width: 12rpx;
+  height: 12rpx;
+  background: #fff;
+}
+
+/*底部控制区域*/
+.musicControl{
+  /*开绝对定位，让图标距离底部有一段距离*/
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  border-top: 1rpx solid #fff;
+
+  width: 100%;
+  display: flex;
+}
+.musicControl text{
+  width: 20%;
+  height: 120rpx;
+  line-height: 120rpx;/*行高和高度一样，说明水平居中*/
+  text-align: center;
+  color: black;
+  font-size: 50rpx;
+}
+.musicControl text.big{/*后代元素选择器和交集选择器结合使用*/
+  font-size: 80rpx;
+}
+.progressControl text{
+  margin: 0 20rpx;
+}

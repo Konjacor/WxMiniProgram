@@ -1,0 +1,12 @@
+<import src="/template/myTemplate/myTemplate.wxml"/><!--引入模板页面-->
+<view class="otherContainer">
+  <!-- 测试模板 -->
+  <view class="otherTitle">测试使用模板</view>
+  <template is="myTmp" data="{{...person}}"/><!--is属性是别的模板的名字；data属性为传入模板的数据，支持用js的三点运算符进行拆包，传入后，模板中可以使用拆包出来的属性进行动态的内容更新。-->
+  <view>*******************</view>
+  <view>*******************</view>
+
+  <!-- 测试获取用户唯一标识openId -->
+  <view class="otherTitle">测试获取用户唯一标识openId</view>
+  <button bindtap="handleGetOpenId">获取openId</button>
+</view>

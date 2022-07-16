@@ -1,0 +1,4 @@
+@import "/static/iconfont/iconfont.wxss";
+page {/*设置page的高度为100%防止出现里面的内容撑不满而留有空白的情况*/
+  height: 100%;
+}

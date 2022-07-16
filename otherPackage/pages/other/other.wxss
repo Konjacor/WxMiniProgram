@@ -1,0 +1,8 @@
+/* pages/other/other.wxss */
+/* 引入模板样式 */
+@import "/template/myTemplate/myTemplate.wxss";/*引入样式的语法*/
+.otherTitle {/*由于引入的模板中也有名为title的类选择器，所以如果想避免覆盖，就要另外起一个新的class属性名。不过进行样式覆盖也恰恰是模板的用处之一，模板提供默认样式，如果想要修改，只需要覆盖模板的样式即可。*/
+  font-size: 50rpx;
+  font-weight: bold;
+  color: red;
+}

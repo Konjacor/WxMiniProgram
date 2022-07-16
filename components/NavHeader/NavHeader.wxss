@@ -1,0 +1,16 @@
+/* components/NavHeader/NavHeader.wxss */
+.header{
+  margin-bottom: 20rpx;/*设置指定位置的间距*/
+}
+.header .title{
+  font-size: 32rpx;
+  font-weight: bold;/*设置字体粗细程度*/
+  line-height: 80rpx;
+}
+.header .more{
+  float: right;/*向右浮动，意味着组件将出现在最右边的边界处*/
+  border: 1rpx solid #333;/*设置边框*/
+  padding: 10rpx 20rpx;
+  font-size: 26rpx;
+  border-radius: 30rpx;
+}

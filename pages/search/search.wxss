@@ -1,0 +1,142 @@
+/* pages/search/search.wxss */
+.searchContainer {
+  padding: 0 20rpx;
+}
+/*头部搜索区域 */
+.header {
+  display: flex;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 10rpx 0;
+}
+
+.searchInput {
+  position: relative;
+  flex: 1;/*设置该元素在父元素空间下尽可能拉伸*/
+  background: rgba(237, 237, 237, 0.3);
+  border-radius: 30rpx;
+}
+
+.clear {
+  position: absolute;
+  right: 30rpx;
+  z-index: 10;/*提高层级,确保点击时能点击到该元素*/
+  top: 0;
+  font-size: 30rpx;
+
+}
+.cancel {
+  width: 100rpx;
+  text-align: center;
+}
+
+
+.searchIcon {
+  position: absolute;/*开启定位，脱离文档流？表现在可以遮挡别人或被别人遮挡，它占用的页面空间可以和别人共享？*/
+  left: 15rpx;
+}
+.searchInput input {
+  margin-left: 50rpx;
+  height: 60rpx
+}
+.placeholder{
+  /*color: #d43c33;*/
+  font-size: 28rpx;
+}
+
+
+/* 热搜榜 */
+.hotContainer {
+  margin-top: 30rpx;
+
+}
+.hotContainer .title {
+  font-size: 28rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.hotList {
+  /*流式布局的设置*/
+  display: flex;
+  flex-wrap: wrap;/*一行达到上限后进行换行*/
+}
+
+.hotItem {
+  width: 50%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 26rpx;
+}
+
+.hotItem .order {
+  margin: 0 10rpx;
+}
+
+
+.hotItem .iconImg {
+  width: 35rpx;
+  height: 20rpx;
+  margin-left: 10rpx;
+}
+
+
+
+/* 搜索内容展示 */
+.searchContent {
+  color: #d43c33;/*color是定义字体的颜色*/
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 24rpx;
+  border-bottom: 1rpx solid #d43c33;
+
+}
+
+.searchItem {
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+}
+
+
+.searchItem .content {
+  flex: 1;
+  margin-left: 20rpx;
+  border-bottom: 1rpx solid #eee;
+  font-size: 26rpx;
+}
+
+
+/* 搜索历史 */
+.history {/*这个元素的大小应该是由里面的元素撑开的，所以不能给这个选择器指定高度*/
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  line-height:  50rpx;
+  margin: 20rpx 0;
+}
+
+
+.history .title {
+  font-size: 28rpx;
+  height: 50rpx;
+
+}
+
+.history .historyItem {
+  height: 50rpx;
+  font-size: 26rpx;
+  background: #ededed;
+  margin-left: 20rpx;
+  padding: 0 30rpx;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.history .delete {
+  position: absolute;
+  bottom: 10rpx;
+  right: 15rpx;
+  font-size: 36rpx;
+}

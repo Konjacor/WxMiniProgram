@@ -1,0 +1,68 @@
+<!--pages/video/video.wxml-->
+<view class="videoContainer">
+  <!--头部区域-->
+  <view class="header">
+    <image src="/static/images/video/video.jpg"></image>
+    <view class="search" bindtap="toSearch">搜索音乐</view>
+    <image src="/static/images/logo.png"></image>
+  </view>
+  <!--导航区域-->
+  <scroll-view 
+  scroll-x="true" 
+  class="navScroll" 
+  enable-flex="true" 
+  scroll-into-view="{{'scroll'+navId}}" 
+  scroll-with-animation="true"><!--用scroll-into-view来实现将选中的标签向一个方向滚动到最前面的效果，是通过它的值和下面元素的id值匹配来实现的，匹配上的元素会被滚动到最前面，但是下面的id值不能以数字开头，所以上下都拼上同一个串来解决这个问题;scroll-with-animation用来设置滚动的动画效果-->
+    <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id" id="{{'scroll'+item.id}}"><!--一个元素可以属于多个类，中间用空格分开;设置id是为了让上面的scroll-into-view访问到以实现每次点击标签就将标签转移到最前面的效果-->
+      <view class="navContent {{navId === item.id?'active':''}}" bindtap="changeNav" id="{{item.id}}"><!--id属性会被传到event对象中；类名也可以写成动态的-->
+       {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+  <!--视频列表区域-->
+  <scroll-view 
+  scroll-y="true" 
+  class="videoScroll"
+  bindrefresherrefresh="handleRefresher"
+  refresher-enabled="true"
+  refresher-triggered="{{isTriggered}}"
+  bindscrolltolower="handleToLower"
+  ><!--refresher-enabled是开启下拉刷新；bindrefresherrefresh是绑定下拉刷新时的事件；
+  refresher-triggered是指定下拉刷新的触发器，如果触发器为true则激活下拉刷新，如果为false就停止下拉刷新；
+  bindscrolltolower是绑定滚动到底部或右边时触发的方法，可用来做上拉/左滑触底加载的功能；-->
+    <view class="viewItem" wx:for="{{videoList}}" wx:key="id">
+      <video 
+      src="{{item.data.urlInfo.url}}"
+      bindplay="handlePlay"
+      id="item.data.vid"
+      poster="item.data.coverUrl"
+      class="common"
+      object-fit="fill"
+      wx:if="{{videoId === item.data.vid}}"
+      bindtimeupdate="handleTimeUpdate"
+      bindended="handleEnded"
+      ></video><!--设置处理点击视频播放/继续视频播放的事件，来实现同时只能有一个视频在播放，设置id方便在js中创建控制video标签的实例对象videoContext;object-fit用来指定当video里面的内容与容器大小不相符的情况下的行为，fill是将内容填充满整个容器。-->
+      <!--性能优化：使用image标签代替video标签-->
+      <image wx:else bindtap="handlePlay" src="{{item.data.coverUrl}}" class="common"></image>
+    </view>
+    <view class="content">{{item.data.title}}</view>
+
+      <view class="footer">
+        <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
+        <text class="nickName">{{item.data.creator.nickname}}</text>
+        <view class="comments_praised">
+          <text class="item">
+            <text class="iconfont icon-buoumaotubiao15"></text>
+            <text class="count">{{item.data.praisedCount}}</text>
+          </text>
+          <text class="item">
+            <text class="iconfont icon-pinglun1"></text>
+            <text class="count">{{item.data.commentCount}}</text>
+          </text>
+          <button open-type="share" class="item btn"><!--open-type指定了这个按钮的类型为share，那么点击这个按钮时就会调用分享的回调（模板中自带了）-->
+            <text class="iconfont icon-gengduo"></text>
+          </button>
+        </view>
+      </view>
+  </scroll-view>
+</view>

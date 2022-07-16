@@ -1,0 +1,40 @@
+<view class="songDetailContainer">
+  <view class="author"><!--作者-->
+    {{song.ar[0].name?song.ar[0].name:"none"}}
+  </view>
+  <!--摇杆区域-->
+  <view class="circle"></view>
+  <image class="needle {{isPlay && 'needleRotate'}}" src="/static/images/song/needle.png"></image><!--这样写动态类名是利用到了js中逻辑运算符的特性，逻辑运算的逻辑中断这一性质在此不再赘述，初次之外，逻辑运算是有返回值的，逻辑运算的返回值是最后运行到的条件表达式。-->
+  <!--磁盘区域-->
+  <view class="discContainer {{isPlay && 'discAnimation'}}">
+    <image class="disc" src="/static/images/song/disc.png"></image>
+    <image class="musicImg" src="{{song.al.picUrl?song.al.picUrl:'/static/images/nvsheng.jpg'}}"></image>
+  </view>
+
+  <!--进度条控制区域-->
+  <view class="progressControl">
+    <text>{{currentTime}}</text>
+    <!-- 总进度条 -->
+    <view class="barControl">
+      <!-- 实时进度条，通过实时进度条覆盖总进度条来实现动态进度条的效果 -->
+      <view class="audio-currentTime-Bar" style="width: {{currentWidth+'rpx'}}"><!--设置内联样式，以动态显示进度条-->
+        <!-- 小圆球效果 -->
+        <view class="audio-circle"></view>
+      </view>
+    </view>
+    <text>{{durationTime?durationTime:"00:00"}}</text>
+  </view>
+
+  <!--底部控制播放区域-->
+  <view class="musicControl">
+    <text class="iconfont icon-iconsMusicyemianbofangmoshiShuffle"></text>
+
+    <text class="iconfont icon-shangyishou" id="pre" bindtap="handleSwitch"></text><!--切歌，id代表着切歌的类型，是当参数传给event的-->
+
+    <text class="iconfont {{isPlay?'icon-zanting': 'icon-bofang'}} big" bindtap="handleMusicPlay"></text><!--动态播放按钮，没播放的时候是播放图标，播放的时候是暂停图标-->
+
+    <text class="iconfont icon-next" id="next" bindtap="handleSwitch"></text><!--切歌，id代表着切歌的类型，是当参数传给event的-->
+
+    <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
+  </view>
+</view>

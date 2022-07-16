@@ -1,0 +1,69 @@
+<view class="indexContainer">
+
+  <!-- 轮播图区域 -->
+  <swiper class="banners" indicator-dots="true" indicator-color="ivory" indicator-active-color="#d43c33">
+      <swiper-item wx:for="{{bannerList}}" wx:key="bannerId"> <!--用wx:for遍历返回的数据列表，变量用双大括号进行包裹,指定wx:key为数据列表里面的主键，不用index是因为防止插入数据时调整下标做过多的操作-->
+        <image src="{{item.pic}}"></image> <!--index代表当前数据元素对象的下标，item代表当前数据元素对象,两者的名称都可自定义，详情可见官方文档-->
+      </swiper-item>
+  </swiper>
+
+  <!-- 五个图标导航区域 -->
+  <view class="navContainer">
+    <view class="navItem" bindtap="toRecommendSong">
+      <text class="iconfont icon-jiangbei"></text>
+      <text>每日推荐</text>
+    </view>
+    <view class="navItem" bindtap="toOther">
+      <text class="iconfont icon-shanchu"></text>
+      <text>other页面</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-liuyan"></text>
+      <text>排行榜</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-search"></text>
+      <text>电台</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-diantai"></text>
+      <text>直播</text>
+    </view>
+  </view>
+
+  <!-- 推荐歌曲区域 -->
+  <view class="recommendContainer">
+    <!--推荐歌曲头部区域-->
+    <NavHeader title="推荐歌曲" nav="为您精心推荐"></NavHeader>
+    <!-- 推荐歌曲滚动内容区 -->
+    <scroll-view class="recommendScroll" enable-flex="true" scroll-x="true"> <!--这种滚动内容用scroll-view实现-->
+    <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id">
+      <image src="{{item.picUrl}}"></image>
+      <text>{{item.name}}</text>
+    </view> 
+    </scroll-view>
+  </view>
+
+  <!--排行榜区域-->
+  <view class="topList">
+    <!--头部区域-->
+    <NavHeader title="排行榜" nav="热歌风向标"></NavHeader>
+    <!--内容区域-->
+    <!-- circular无限循环滑动，next-margin后面一项露出来一点，previous-margin前面一项露出来一点 -->
+    <swiper class="topListSwiper" circular="true" next-margin="50rpx" previous-margin="50rpx">
+      <!-- 涉及双层循环，要利用wx:for-item和wx:for-index起好元素项和元素下标的别名 -->
+      <swiper-item wx:for="{{topList}}" wx:for-item="topListItem" wx:for-index="topListIndex" wx:key="name"><!--该循环遍历每个排行榜-->
+        <view class="swiperItem">
+          <view class="title">{{topListItem.name}}</view>
+          <view class="musicItem" wx:for="{{topListItem.tracks}}" wx:key="id" wx:for-item="tracksItem" wx:for-index="tracksIndex"><!--该循环遍历当前榜下的数据-->
+            <image src="{{tracksItem.al.picUrl}}"></image><!--分析数据得到图片的访问路径-->
+            <text class="count">{{tracksIndex+1}}</text><!--index从0开始，所以要加一-->
+            <text class="musicName">《{{tracksItem.name}}》</text><!--加个书名号更好看-->
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+</view>
+

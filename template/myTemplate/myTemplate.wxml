@@ -1,0 +1,10 @@
+<!-- 定义模板 -->
+<template name="myTmp"><!--name属性作为模板的标识，template标签括起来的内容可以在别的文件中复用。-->
+  <view>
+    <view class="title">这是我自定的模板内容</view>
+    <view class="userInfo">
+      <view class="userName">用户名： {{username}}</view><!--username和age属性来自于使用模板的地方利用模板的data属性传入的数据，这里是传了个拆包的person对象，因为已经拆包，所以可以直接访问到person对象中的属性。-->
+      <view class="age">年龄： {{age}}</view>
+    </view>
+  </view>
+</template>

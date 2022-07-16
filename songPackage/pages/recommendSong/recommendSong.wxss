@@ -1,0 +1,91 @@
+/* pages/recommendSong/recommendSong.wxss */
+@import '../../static/iconfont/iconfont.wxss';/*采用非独立分包时，分包但不分家，全局的样式和变量等还是可以共享的，但是如果采用了独立分包，就代表分家了，无法共享全局的样式和变量等，需要重新引入在当前子包根目录下的资源。同时注意css语句后面要跟分号。*/
+/*头部区域样式*/
+page{
+  height: 100%;
+}
+.recommendSongContainer .header{
+  position: relative;/*相对定位，移动时以当前位置为参照，元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。*/
+
+  width: 100%;/*宽度在父容器宽度中的占比*/
+  height: 300rpx;
+}
+.recommendSongContainer .header image{
+  width: 100%;
+  height: 100%;
+}
+.recommendSongContainer .header .date{
+  /*相对于父元素进行定位，以元素左上角的点为准*/
+  position: absolute;/*绝对定位，移动时以整个父元素为参照。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。*/
+  left: 50%;
+  top: 50%;
+  /*由于是以元素左上角的点为准，因此还需要往左往上回半个身位来将该元素的几何中心放到正中间*/
+  margin-left: -150rpx;/*往左缩半个身位*/
+  margin-top: -50rpx;/*往上缩半个身位*/
+
+  width: 300rpx;
+  height: 100rpx;
+  /* border: 1rpx solid red;只是为了好参照 */
+  text-align: center;/*文字水平居中*/
+  line-height: 100rpx;/*文字垂直居中*/
+  color: #fff;
+}
+.header .date .day{
+  font-size: 48rpx;
+}
+/*列表区域样式*/
+/*列表区域头部*/
+.listContainer{
+  /*相对当前位置进行定位，这样做虽然往上走了一段，但是由于是相对移动，所以它还占那么多的位，计算的时候不用考虑它往上挪的那个距离。*/
+  position: relative;
+  top: -20rpx;/*往上挪20rpx以显示出圆角*/
+
+  padding: 0 20rpx;
+  border-radius: 30rpx;
+  background: #fff;
+}
+.listHeader{
+  height: 80rpx;
+  line-height: 80rpx;/*相当于竖直居中的效果*/
+}
+.listHeader .changeMore{
+  float: right;/*往右浮动直到碰到父元素的边界*/
+}
+/*列表区域内容*/
+.listScroll{/*给scroll-view设置一个固定高度，以做到向下滚动时只有scroll-view区域滚动，其它区域不动*/
+  height: calv(100vh - 380rpx);
+}
+.scrollItem{
+  position: relative;/*相对定位，因为它有个子元素用了绝对定位，具体原理不太懂*/
+  display: flex;/*让里面的元素实现横向排列*/
+  margin-bottom: 20rpx;/*设置下外边距*/
+}
+.scrollItem image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+}
+.musicInfo{/*这样设置它的子元素就都变成块级元素了，并且flex的方向是column代表子元素纵向排列*/
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+}
+.musicInfo text{/*由于text是内联元素，因此直接设置长宽等属性不会生效,因此要将父元素的display设置为flex，这样它的子元素就都变成块级元素了，长宽等属性的设置也就可以生效了。*/
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  /*设置单行文本溢出，多余的用省略号代替*/
+  max-width: 500rpx;/*设置最大宽度*/
+  white-space: nowrap;/*不允许换行*/
+  overflow: hidden;/*隐藏多余文字*/
+  text-overflow: ellipsis;/*多余文字用省略号代替*/
+}
+.scrollItem .iconfont{
+  position: absolute;/*同时父元素应该设置这个属性为relative*/
+  right: 0;
+
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  /* background: red;只是为了比较好参考 */
+}

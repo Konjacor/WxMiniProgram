@@ -1,0 +1,126 @@
+/* pages/index/index.wxss */
+/* 轮播图的样式 */
+.banners{
+  width: 100%;
+  height: 300rpx;/* 1rpx = 0.5px */
+}
+.banners image{
+  width: 100%;
+  height: 100%;
+}
+/* 五个图标导航区域的样式 */
+.navContainer{
+  display: flex;/*弹性布局*/
+}
+.navItem{
+  display: flex;
+  flex-direction: column;/*调整子元素的布局方向为纵向（默认是横向）*/
+  align-items: center;/*设置子项在交叉轴（侧轴，y轴）上如何对齐*/
+  width: 20%;
+}
+.navItem .iconfont{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;/*变成圆形了*/
+  text-align: center;/*设置文字对齐方式为居中*/
+  line-height: 100rpx;/*设置行高*/
+  background-color: rgb(240, 19, 19);
+  font-size: 50rpx;
+  color: #fff;
+  margin: 20rpx 0;/*设置间距，第一个参数为上下，第二个参数为左右*/
+}
+.navItem text{
+  font-size: 26rpx;
+}
+/* 推荐歌曲区域 */
+.recommendContainer{
+  padding: 20rpx;/*设置上下左右间距*/
+}
+.recommendContainer .header{
+  margin-bottom: 20rpx;/*设置指定位置的间距*/
+}
+.recommendContainer .header .title{
+  font-size: 32rpx;
+  font-weight: bold;/*设置字体粗细程度*/
+  line-height: 80rpx;
+}
+.recommendContainer .header .more{
+  float: right;/*向右浮动，意味着组件将出现在最右边的边界处*/
+  border: 1rpx solid #333;/*设置边框*/
+  padding: 10rpx 20rpx;
+  font-size: 26rpx;
+  border-radius: 30rpx;
+}
+/* 滚动内容区 */
+.recommendScroll{
+  display: flex;
+  height: 300rpx;/*对于scroll-view在横向排列时必须要显式声明该组件的高度，不然尽管设置了横向布局，但是该组件在自动计算高度的时候还是按照纵向布局的时候来计算，因此有时会长出不少,此时就需要显式声明一下它的长度。*/
+}
+.scrollItem{
+  /* display: flex; */
+  height: 200rpx;
+  width: 200rpx;
+  margin-right: 20rpx;
+  /* flex-direction: column; */
+}
+.scrollItem image{
+  height: 200rpx;
+  width: 200rpx;
+  border-radius: 10rpx;
+}
+.scrollItem text{
+  font-size: 26rpx;
+  /* 单行文本溢出隐藏，省略号代替 */
+  /* display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  /* 多行文本溢出隐藏，省略号代替 */
+  overflow: hidden;/*文本溢出隐藏*/
+  text-overflow: ellipsis;/*溢出的部分用省略号代替*/
+  display: -webkit-box;/*设置布局格式*/
+  -webkit-box-orient: vertical;/* 设置对齐模式 */
+  -webkit-line-clamp: 2;/* 设置文字能显示的行数*/
+}
+
+/*排行榜区域*/
+.topList{
+  padding: 20rpx;
+}
+/*排行榜内容区域*/
+.topListSwiper{/*修改swiper的默认宽高以显示全部内容*/
+  height: 400rpx;
+}
+.swiperItem{
+  width: 96%;/*后面留个小缝*/
+  background-color: #ededed;
+}
+.swiperItem .title{
+  font-size: 30rpx;
+  line-height: 80rpx;
+}
+.musicItem{
+  /*当一个元素的display被设置为flex后，其子元素都会变成block元素（块元素）*/
+  display: flex;
+  margin-bottom: 20rpx;
+}
+.musicItem image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 6rpx;/*圆角*/
+}
+.musicItem .count{/*由于文本是inline元素（内联元素），无法修改宽高，因此要先将其转换为block元素（块元素）后再设置宽高才能生效*/
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;/*居中*/
+}
+.musicItem .musicName{
+  height: 100rpx;
+  line-height: 100rpx;
+  max-width: 400rpx;/*设置文本最大宽度*/
+  /*单行文本溢出处理*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
